@@ -1,2 +1,10 @@
 # GitHub-Action-Demo
-This is an demo project to demonstrate how GitHub Action works.
+## How to run the demo React app
+Starts the development server using Vite.
+```
+npm run dev
+```
+Runs the project's tests using the Vitest testing framework.
+```
+npm test
+```
