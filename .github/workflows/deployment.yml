@@ -1,8 +1,15 @@
 # The name of the workflow which will show in the Actions tab on GitHub
 name: Deploy Project
 
-# Specifies when the workflow should run. This one is triggered on a push event or when manually triggered from the Actions tab
-on: [push, workflow_dispatch]
+on:
+  # Triggers the workflow on push or pull request events but only for the "react-app-action-demo" branch
+  push:
+    branches: [ "react-app-action-demo" ]
+  pull_request:
+    branches: [ "react-app-action-demo" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs
 jobs:
