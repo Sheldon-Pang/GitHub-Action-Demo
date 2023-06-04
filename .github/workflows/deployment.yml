@@ -1,0 +1,56 @@
+# The name of the workflow which will show in the Actions tab on GitHub
+name: Deploy Project
+
+# Specifies when the workflow should run. This one is triggered on a push event or when manually triggered from the Actions tab
+on: [push, workflow_dispatch]
+
+# A workflow run is made up of one or more jobs
+jobs:
+
+  # This job is called "test" and will run tests on the project
+  test:
+    # Specifies the type of runner that the job will run on. Here it's the latest version of Ubuntu
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # This step checks out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Get code
+        uses: actions/checkout@v3
+      # This step sets up NodeJS environment on the runner
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          # It will setup specific NodeJS version - 18 in this case
+          node-version: 18
+      # This step installs project dependencies using npm ci command
+      - name: Install dependencies
+        run: npm ci
+      # This step runs tests on the project using npm test command
+      - name: Run tests
+        run: npm test
+
+  # This job is called "deploy" and will be used to deploy the project
+  deploy:
+    # The "deploy" job will run only if the "test" job has completed successfully
+    needs: test
+    # Specifies the type of runner that the job will run on. Here it's the latest version of Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      # This step checks out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Get code
+        uses: actions/checkout@v3
+      # This step sets up NodeJS environment on the runner
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          # It will setup specific NodeJS version - 18 in this case
+          node-version: 18
+      # This step installs project dependencies using npm ci command
+      - name: Install dependencies
+        run: npm ci
+      # This step builds your project using npm run build command
+      - name: Build project
+        run: npm run build
+      # This step is used for deploying your project. In this example, it just prints "Deploying ..."
+      - name: Deploy
+        run: echo "Deploying ..."

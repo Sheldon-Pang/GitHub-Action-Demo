@@ -1,0 +1,26 @@
+# This is a YAML document which describes the GitHub Actions workflow. It should be placed in your repository at .github/workflows/
+
+# "name" is a string that identifies your workflow. This is useful when you have multiple workflows and need to distinguish between them.
+name: Output information
+
+# "on" is a key that specifies the event that triggers the workflow. 
+# "workflow_dispatch" is an event that allows you to manually trigger the workflow from GitHub's UI.
+on: workflow_dispatch
+
+# "jobs" is a key that holds a map of identifiers and their respective jobs. Jobs define the actual steps to be taken during a workflow run.
+jobs:
+  # Here, "info" is an identifier for this job.
+  info:
+    # "runs-on" is a key that specifies the type of runner that the job will run on. Here, it is specified to run on the latest version of Ubuntu.
+    runs-on: ubuntu-latest
+    # "steps" is a key that holds an array of steps that will be executed as part of the job.
+    steps:
+      # Each step in the job is represented by an item in the array. Each step can have a name and a number of operations that should be run.
+
+      # "name" is a string that identifies this step. It's good practice to give each step a meaningful name for clarity.
+      - name: Output GitHub context
+
+        # "run" is a key that specifies a shell command that should be run. Here, the command will print a JSON string of the GitHub context.
+        # The "${{ toJSON(github) }}" expression is evaluated at runtime, and is used here to convert the GitHub context object into a JSON string.
+        # The GitHub context object contains information about the current state of the repository and the workflow.
+        run: echo "${{ toJSON(github) }}"
