@@ -42,6 +42,9 @@ jobs:
       # This step checks out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Get code
         uses: actions/checkout@v3
+        with:
+          # This is the name of the repository that will be checked out.
+          ref: 'react-app-action-demo'
       # This step sets up NodeJS environment on the runner
       - name: Install NodeJS
         uses: actions/setup-node@v3
