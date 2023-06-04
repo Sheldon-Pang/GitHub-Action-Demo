@@ -17,7 +17,7 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
         with:
-            # This is the name of the repository that will be checked out.
+            # This is the name of the branch that will be checked out.
           ref: 'react-app-action-demo'
       # This step sets up NodeJS environment on the runner
       - name: Install NodeJS
@@ -43,7 +43,7 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
         with:
-          # This is the name of the repository that will be checked out.
+          # This is the name of the branch that will be checked out.
           ref: 'react-app-action-demo'
       # This step sets up NodeJS environment on the runner
       - name: Install NodeJS
