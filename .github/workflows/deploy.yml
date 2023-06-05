@@ -1,0 +1,79 @@
+# Defines the name of your GitHub Actions Workflow
+name: Deploy (Docker Container Demo)
+
+# Defines when your workflow is triggered.
+on:
+  # The workflow will be triggered when a push to the 'docker-container-action-demo' branch occurs.
+  push:
+    branches:
+      - docker-container-action-demo
+  # Also, the workflow can be manually triggered in the 'Actions' tab for the 'docker-container-action-demo' branch.
+  workflow_dispatch:
+    branches:
+      - docker-container-action-demo
+
+# Here you're defining environment variables that will be accessible to all jobs.
+env:
+  CACHE_KEY: node-deps # Cache key for npm dependencies
+  MONGODB_DB_NAME: gha-demo # Database name
+
+# This section defines the jobs of the workflow.
+jobs:
+  # The first job is called 'test'. Its role is to test the application.
+  test:
+    environment: testing # GitHub's environments can track and limit deployment of your app, in this case for 'testing'
+    # Specifies the type of runner that the job will run on. Here it will run on the latest version of Ubuntu.
+    runs-on: ubuntu-latest
+
+    # Defines environment variables that will be accessible only in this job.
+    env:
+      # Using GitHub secrets to store sensitive data like MongoDB connection details
+      MONGODB_CONNECTION_PROTOCOL: ${{ secrets.MONGODB_CONNECTION_PROTOCOL }}
+      MONGODB_CLUSTER_ADDRESS: ${{ secrets.MONGODB_CLUSTER_ADDRESS }}
+      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
+      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
+      PORT: 8080 # The port on which the server will run.
+
+    # Defines the steps that will be executed as part of the 'test' job.
+    steps:
+      # Checks out your repository to the runner, so the job can access it.
+      - name: Get Code
+        uses: actions/checkout@v3
+
+      # Caches npm dependencies to speed up future workflow runs.
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm # The path to the directory you want to cache.
+          key: ${{ env.CACHE_KEY }}-${{ hashFiles('**/package-lock.json') }} # A unique key for this cache.
+
+      # Installs npm dependencies.
+      - name: Install dependencies
+        run: npm ci
+
+      # Starts the server.
+      - name: Run server
+        run: npm start & npx wait-on http://127.0.0.1:$PORT # Requires MongoDB Atlas to accept requests from anywhere!
+
+      # Runs the application's test suite.
+      - name: Run tests
+        run: npm test
+
+      # Outputs the value of 'MONGODB_USERNAME' to the console.
+      - name: Output information
+        run: |
+          echo "MONGODB_USERNAME: $MONGODB_USERNAME"
+
+  # The second job is called 'deploy'. This job depends on the 'test' job. If the 'test' job fails, this job won't run.
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      # Outputs the values of 'MONGODB_DB_NAME', 'MONGODB_USERNAME', and the 'PORT' environment variable to the console.
+      - name: Output information
+        env:
+          PORT: 3000 # The port on which the server will run in deployment
+        run: |
+          echo "MONGODB_DB_NAME: $MONGODB_DB_NAME"
+          echo "MONGODB_USERNAME: $MONGODB_USERNAME"
+          echo "${{ env.PORT }}"

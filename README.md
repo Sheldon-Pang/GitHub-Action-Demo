@@ -1,33 +1,8 @@
-# GitHub-Action-Demo
-This is an demo project to demonstrate how GitHub Action works.
+# About this branch
+This is an demo project to demonstrate how Docker Containers work with GitHub Action.
 
-## What is GitHub Action?
-GitHub Actions is an automation and CI/CD (Continuous Integration/Continuous Deployment) platform provided by GitHub. It allows you to define workflows and automate various tasks within your software development process.
+## How to use this branch
 
-Some common use cases for GitHub Actions include:
-1. Continuous Integration (CI): You can use GitHub Actions to build, test, and validate your code automatically whenever changes are pushed to your repository. This helps ensure that your codebase remains in a working state and catches any errors or issues early in the development process.
-2. Continuous Deployment (CD): GitHub Actions can be used to automate the deployment of your applications to different environments, such as staging or production. This allows you to define deployment workflows that are triggered after successful CI runs, ensuring that your code is automatically deployed to your desired target environments.
-3. Code Quality and Security Checks: GitHub Actions can integrate with various code analysis tools to perform checks on your codebase for code quality, security vulnerabilities, and adherence to coding standards. You can set up workflows to automatically run these checks and provide feedback on any potential issues.
-4. Release Management: GitHub Actions can help automate the release process of your software by creating and publishing release artifacts, generating release notes, and notifying stakeholders about new releases.
+## Why use Containers with GitHub Action?
+Using containers with GitHub Actions offers several advantages. Containers provide a way to define a fully controlled and predefined environment for running your code or performing tasks. With containers, you have the flexibility to define the installed software, configuration, and setup steps that best suit your needs. This allows you to create a consistent and reproducible environment that can be easily shared and reused across different workflows. Containers also offer isolation, ensuring that your code runs consistently regardless of the underlying runner machine. By leveraging containers in GitHub Actions, you gain full control over your development and deployment environment, enabling you to create consistent, portable, and efficient workflows.
 
-### Key Elements of GitHub Actions:
-- Workflows, Jobs & Steps
-- Workflows
-    - Attached to a GitHub repository
-    - Contain one or more Jobs
-    - Triggered upon Events
-- Jobs
-    - Define a Runner (execution environment)
-    - Contain one or more Steps
-    - Run in parallel (default) or sequential
-    - Can be conditional
-- Steps
-    - Execute a shell script or an Action
-    - Can use custom or third-party actions
-    - Steps are executed in order
-    - Can be conditional
-
-### GitHub Actions: Availability & Pricing
-In public repositories, you can use GitHub Actions for free. For private repositories, only a certain amount of monthly usage is available for free - extra usage on top must be paid.
-- The exact quotas and payment details depend on your GitHub plan, a detailed summary can be found here: https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions
-- If you can't find an "Actions" tab in your GitHub repository, you can should enable them as described here: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository

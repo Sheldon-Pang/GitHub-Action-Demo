@@ -1,0 +1,11 @@
+# ingore node_modules
+node_modules/
+
+# ignore test results
+/test-results/
+
+# ignore coverage
+/playwright-report/
+
+# ignore cache
+/playwright/.cache/
