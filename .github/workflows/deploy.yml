@@ -25,6 +25,9 @@ jobs:
     # Specifies the type of runner that the job will run on. Here it will run on the latest version of Ubuntu.
     runs-on: ubuntu-latest
 
+    container: # Defines the Docker container that will be used to run the job.
+      image: node:16 # The Docker image that will be used to run the job.
+
     # Defines environment variables that will be accessible only in this job.
     env:
       # Using GitHub secrets to store sensitive data like MongoDB connection details
