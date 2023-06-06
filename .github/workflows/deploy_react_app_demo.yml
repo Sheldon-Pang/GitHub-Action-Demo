@@ -1,15 +1,16 @@
 # The name of the workflow which will show in the Actions tab on GitHub
-name: Deploy Project
+name: Deploy (React App Demo)
 
+# Defines when your workflow is triggered.
 on:
-  # Triggers the workflow on push or pull request events but only for the "react-app-action-demo" branch
+  # The workflow will be triggered when a push to the 'docker-container-action-demo' branch occurs.
   push:
-    branches: [ "react-app-action-demo" ]
-  pull_request:
-    branches: [ "react-app-action-demo" ]
-
-  # Allows you to run this workflow manually from the Actions tab
+    branches:
+      - react-app-action-demo
+  # Also, the workflow can be manually triggered in the 'Actions' tab for the 'docker-container-action-demo' branch.
   workflow_dispatch:
+    branches:
+      - react-app-action-demo
 
 # A workflow run is made up of one or more jobs
 jobs:
@@ -23,6 +24,9 @@ jobs:
       # This step checks out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Get code
         uses: actions/checkout@v3
+        with:
+            # This is the name of the branch that will be checked out.
+          ref: 'react-app-action-demo'
       # This step sets up NodeJS environment on the runner
       - name: Install NodeJS
         uses: actions/setup-node@v3
@@ -46,6 +50,9 @@ jobs:
       # This step checks out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Get code
         uses: actions/checkout@v3
+        with:
+          # This is the name of the branch that will be checked out.
+          ref: 'react-app-action-demo'
       # This step sets up NodeJS environment on the runner
       - name: Install NodeJS
         uses: actions/setup-node@v3
