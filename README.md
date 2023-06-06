@@ -23,3 +23,9 @@ container: # Defines the Docker container that will be used to run the job.
 ```
 
 Explore Official Docker  Images: https://hub.docker.com/search?image_filter=official&type=image
+
+## Service Containers
+
+GitHub Actions service containers allow you to run additional services alongside your Jobs and Steps in a controlled environment. They are useful for scenarios like running automated tests with a separate testing database. Service containers eliminate the need for setting up and maintaining separate servers for testing services, reducing costs and resource usage. These containers are spun up when needed and shut down once the Workflow finishes, ensuring efficient usage of resources. They provide a flexible and convenient way to incorporate extra services into your GitHub Actions workflows.
+
+More on Service Containers: https://docs.github.com/en/actions/using-containerized-services/about-service-containers
