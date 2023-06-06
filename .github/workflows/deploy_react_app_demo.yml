@@ -1,8 +1,16 @@
 # The name of the workflow which will show in the Actions tab on GitHub
 name: Deploy (React App Demo)
 
-# Specifies when the workflow should run. This one is triggered on a push event or when manually triggered from the Actions tab
-on: [push, workflow_dispatch]
+# Defines when your workflow is triggered.
+on:
+  # The workflow will be triggered when a push to the 'docker-container-action-demo' branch occurs.
+  push:
+    branches:
+      - react-app-action-demo
+  # Also, the workflow can be manually triggered in the 'Actions' tab for the 'docker-container-action-demo' branch.
+  workflow_dispatch:
+    branches:
+      - react-app-action-demo
 
 # A workflow run is made up of one or more jobs
 jobs:
