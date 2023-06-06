@@ -1,5 +1,5 @@
 # The name of the workflow which will show in the Actions tab on GitHub
-name: Deploy Project
+name: Deploy (React App Demo)
 
 # Specifies when the workflow should run. This one is triggered on a push event or when manually triggered from the Actions tab
 on: [push, workflow_dispatch]
