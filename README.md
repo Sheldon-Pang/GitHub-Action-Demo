@@ -6,9 +6,9 @@ This is an demo project to demonstrate how GitHub Action works.
 Each branch of this repository represents key concepts of GitHub Actions, and each branch builds on top of another. We recommend the following learning sequence:
 
 1. Read the readme on the "main" branch to learn the basic concepts of GitHub Actions.
-2. Explore the "everything-workflows-and-events" branch to learn how workflows can be triggered by events and how to define event filters.
-3. Check out the "react-app-action-demo" branch to learn about different events, how actions work, and the difference between running jobs in parallel and sequentially.
-4. Take a look at the "docker-container-action-demo" branch to learn how Docker Containers work with GitHub Actions, how to define environment variables, and how to run different services inside the containers.
+2. Explore the ["everything-workflows-and-events"](https://github.com/Sheldon-Pang/GitHub-Action-Demo/tree/everything-workflows-and-events) branch to learn how workflows can be triggered by events and how to define event filters.
+3. Check out the ["react-app-action-demo"](https://github.com/Sheldon-Pang/GitHub-Action-Demo/tree/react-app-action-demo) branch to learn about different events, how actions work, and the difference between running jobs in parallel and sequentially.
+4. Take a look at the ["docker-container-action-demo"](https://github.com/Sheldon-Pang/GitHub-Action-Demo/tree/docker-container-action-demo) branch to learn how Docker Containers work with GitHub Actions, how to define environment variables, and how to run different services inside the containers.
 
 
 ## What is GitHub Action?
