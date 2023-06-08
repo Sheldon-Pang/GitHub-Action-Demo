@@ -1,5 +1,11 @@
 name: Workflows and Events Demo
-on: push
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+    branches:
+      - 'everything-workflows-and-events'
 jobs:
   deploy:
     runs-on: ubuntu-latest
